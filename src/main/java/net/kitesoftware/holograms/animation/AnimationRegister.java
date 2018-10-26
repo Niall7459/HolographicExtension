@@ -28,7 +28,6 @@ public class AnimationRegister {
         registerAnimation(new Right());
         registerAnimation(new Fadein());
         registerAnimation(new Fadeout());
-        registerAnimation(new Scramble());
     }
 
     public List<String> setAnimations(String text) {
