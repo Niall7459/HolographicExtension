@@ -1,0 +1,32 @@
+name: HolographicExtension
+description: Add fun animations and thousands of placeholders into holograms!
+version: 1.10.0
+author: Niall7459
+main: net.kitesoftware.holograms.HolographicExtension
+
+depend: [HolographicDisplays]
+soft-depend: [ProtocolLib, PlaceholderAPI]
+
+commands:
+  hext:
+    description: HolographicExtension main command.
+    aliases:
+    - hx
+    usage: /<command> help
+
+permissions:
+  holographic-extension.help:
+    description: Allow user to use the help subcommand.
+    default: op
+  holographic-extension.list:
+    description: Allow user to use the list subcommand.
+    default: op
+  holographic-extension.about:
+    description: Allow user to use the about subcommand.
+    default: op
+  holographic-extension.reload:
+    description: Allow user to use the help subcommand.
+    default: op
+  holographic-extension.info:
+    description: Allow user to use the info subcommand.
+    default: op
