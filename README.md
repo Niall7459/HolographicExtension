@@ -112,11 +112,4 @@ A full list of already made animations can be found on the
 [KiteBoard-documentation wiki](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations)
 
 # License and terms
-This plugin is under copyright and the following Terms and conditions:  
-```
-You may modify and/or make changes for private use.
-This does not include:
-- Claiming the resource as your own
-- Redistribute or selling it
-- Usage in other software without the explicit permission of the plugin author
-```
+Please see the [COPYRIGHT.md](https://github.com/Niall7459/HolographicExtension/blob/master/COPYRIGHT.md) for terms and conditions.
