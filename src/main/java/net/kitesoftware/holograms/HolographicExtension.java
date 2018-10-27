@@ -5,15 +5,9 @@
 
 package net.kitesoftware.holograms;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
 import net.kitesoftware.holograms.animation.AnimationRegister;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigFile;
-import net.kitesoftware.holograms.listener.PacketPlaceholderListener;
 import net.kitesoftware.holograms.placeholder.RefreshPlaceholders;
 import net.kitesoftware.holograms.updater.UpdateChecker;
 import org.bukkit.Bukkit;
