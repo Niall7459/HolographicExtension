@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016-2018 Niall Lindsay
+ * Email: niall_lindsay@icloud.com
+ */
+
 package net.kitesoftware.holograms.command.subs;
 
 import net.kitesoftware.holograms.command.BaseCommand;
