@@ -35,13 +35,8 @@ public class PacketPlaceholderListener extends PacketAdapter {
     @Override
     public void onPacketSending(PacketEvent event) {
         PacketContainer packet = event.getPacket();
-        Player player = event.getPlayer();
-        if (event.getPacketType() == PacketType.Play.Server.SPAWN_ENTITY_LIVING) {
-            WrapperPlayServerSpawnEntityLiving spawnEntityPacket = new WrapperPlayServerSpawnEntityLiving(packet.deepClone());
-            WrappedWatchableObject customNameWatchableObject = spawnEntityPacket.getMetadata().getWatchableObject(2);
-            replacePlaceholders(customNameWatchableObject, player);
-            event.setPacket(spawnEntityPacket.getHandle());
-        }  else if (packet.getType() == PacketType.Play.Server.ENTITY_METADATA) {
+
+        if (packet.getType() == PacketType.Play.Server.ENTITY_METADATA) {
 
             WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet.deepClone());
             List<WrappedWatchableObject> dataWatcherValues = entityMetadataPacket.getEntityMetadata();

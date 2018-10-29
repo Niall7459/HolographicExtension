@@ -22,9 +22,7 @@ public class ProtocolHook {
         PacketAdapter.AdapterParameteters params = PacketAdapter
                 .params()
                 .plugin(plugin)
-                .types(	PacketType.Play.Server.SPAWN_ENTITY_LIVING,
-                        PacketType.Play.Server.SPAWN_ENTITY,
-                        PacketType.Play.Server.ENTITY_METADATA)
+                .types(PacketType.Play.Server.ENTITY_METADATA)
                 .serverSide()
                 .listenerPriority(ListenerPriority.NORMAL);
 

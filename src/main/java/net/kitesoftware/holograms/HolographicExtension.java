@@ -8,6 +8,7 @@ package net.kitesoftware.holograms;
 import net.kitesoftware.holograms.animation.AnimationRegister;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigFile;
+import net.kitesoftware.holograms.metrics.Metrics;
 import net.kitesoftware.holograms.placeholder.RefreshPlaceholders;
 import net.kitesoftware.holograms.updater.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -58,6 +59,8 @@ public class HolographicExtension extends JavaPlugin {
         } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)){
             Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fUpdate checking is unavailable at this time.");
         }
+
+        new Metrics(this);
     }
 
     public void hookProtocolLib() {

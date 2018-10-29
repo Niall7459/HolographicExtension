@@ -6,6 +6,7 @@
 package net.kitesoftware.holograms.util;
 
 import net.kitesoftware.holograms.HolographicExtension;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -56,6 +57,10 @@ public class Utils {
         for (String frame : frames) {
             frame = ChatColor.translateAlternateColorCodes('&', frame);
             outputFrames.addAll(HolographicExtension.getInstance().getAnimationRegister().setAnimations(frame));
+        }
+
+        if (frames.size() < 1) {
+            outputFrames.add("Failed to load this animation");
         }
 
         return outputFrames;

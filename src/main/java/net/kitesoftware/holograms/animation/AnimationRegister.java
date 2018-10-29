@@ -37,6 +37,7 @@ public class AnimationRegister {
 
     public List<String> setAnimations(String text) {
         List<String> frames = new ArrayList<>();
+        frames.add(text);
 
         for (BaseAnimation animation : getAnimations()) {
             String regex = "(.*?)(<NAME(.*?)+>)(.*?)(</NAME+>)(.*?)$".replace("NAME", animation.getName());
@@ -45,6 +46,8 @@ public class AnimationRegister {
             Matcher matcher = pattern.matcher(text);
 
             if (matcher.find()) {
+                frames.remove(0);
+
                 String options = matcher.group(2);
                 String value = matcher.group(4);
 
@@ -52,8 +55,8 @@ public class AnimationRegister {
                 List<String> animationFrames = animation.setAnimations(value, optionsMap);
 
                 if (animationFrames == null) {
-                    frames.add("Invalid frame detected.");
-                    Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §cInvalid frame detected: " + text);
+                    frames.add("Invalid animation configuration.");
+                    Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §cInvalid animation string detected for: " + text);
                 } else {
                     String before = matcher.group(1);
                     String after = matcher.group(6);
@@ -66,11 +69,11 @@ public class AnimationRegister {
         return frames;
     }
 
-    public void registerAnimation(BaseAnimation animation) {
+    private void registerAnimation(BaseAnimation animation) {
         animationList.add(animation);
     }
 
-    public List<BaseAnimation> getAnimations() {
+    private List<BaseAnimation> getAnimations() {
         return animationList;
     }
 }
