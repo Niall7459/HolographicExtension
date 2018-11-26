@@ -112,4 +112,4 @@ A full list of already made animations can be found on the
 [KiteBoard-documentation wiki](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations)
 
 # License and terms
-Please see the [COPYRIGHT.md](https://github.com/Niall7459/HolographicExtension/blob/master/COPYRIGHT.md) for terms and conditions.
+Please see the [LICENSE.txt](/LICENSE.txt) for terms and conditions.
