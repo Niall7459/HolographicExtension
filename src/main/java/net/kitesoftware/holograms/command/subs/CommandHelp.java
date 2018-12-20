@@ -11,17 +11,14 @@ import org.bukkit.command.CommandSender;
 
 public class CommandHelp extends BaseCommand {
 
-    private CommandHandler commandHandler;
-
     public CommandHelp(CommandHandler commandHandler) {
-        super("help", "Display all commands", "", 0);
-        this.commandHandler = commandHandler;
+        super("help", "Display all commands", "", 0, commandHandler);
     }
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
 
-        for (BaseCommand command : commandHandler.getCommands()) {
+        for (BaseCommand command : getCommandHandler().getCommands()) {
             sender.sendMessage("§e/" + label + " " + command.getName() + " " + command.getPossibleArgs());
             sender.sendMessage("§7" + command.getDescription());
         }

@@ -10,8 +10,9 @@ import org.bukkit.command.CommandSender;
 
 public class CommandQuickstart extends BaseCommand {
 
+    //Currently unused.
     public CommandQuickstart() {
-        super("quickstart", "Get some essential information on setting up and installing placeholders.", "", 0);
+        super("quickstart", "Get some essential information on setting up and installing placeholders.", "", 0, null);
     }
 
     @Override

@@ -6,6 +6,7 @@
 package net.kitesoftware.holograms.util;
 
 import net.kitesoftware.holograms.HolographicExtension;
+import net.kitesoftware.holograms.animation.AnimationRegister;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -51,12 +52,12 @@ public class Utils {
         return options;
     }
 
-    public static List<String> setAnimations(List<String> frames) {
+    public static List<String> setAnimations(List<String> frames, AnimationRegister register) {
         List<String> outputFrames = new ArrayList<>();
 
         for (String frame : frames) {
             frame = ChatColor.translateAlternateColorCodes('&', frame);
-            outputFrames.addAll(HolographicExtension.getInstance().getAnimationRegister().setAnimations(frame));
+            outputFrames.addAll(register.setAnimations(frame));
         }
 
         if (frames.size() < 1) {

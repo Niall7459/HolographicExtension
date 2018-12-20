@@ -19,8 +19,11 @@ public class UserAnimationManager {
     private static final String PREFIX = "ext:";
     private List<ConfigAnimation> animationList;
 
-    UserAnimationManager() {
+    private HolographicExtension plugin;
+
+    UserAnimationManager(HolographicExtension plugin) {
         animationList = new ArrayList<>();
+        this.plugin = plugin;
     }
 
     public void registerAnimation(ConfigAnimation animation) {
@@ -28,7 +31,7 @@ public class UserAnimationManager {
 
         Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §7Registering animation " + animation.getName() + " from config.");
         String placeholder = "{" + PREFIX + animation.getName() + "}";
-        HologramsAPI.registerPlaceholder(HolographicExtension.getInstance(), placeholder, animation.getRefreshRate(), new HextPlaceholderReplacer(animation.getFrames()));
+        HologramsAPI.registerPlaceholder(plugin, placeholder, animation.getRefreshRate(), new HextPlaceholderReplacer(animation.getFrames()));
     }
 
     public List<ConfigAnimation> getRegisteredAnimations() {

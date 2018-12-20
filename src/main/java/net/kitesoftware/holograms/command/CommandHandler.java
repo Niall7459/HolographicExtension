@@ -5,6 +5,7 @@
 
 package net.kitesoftware.holograms.command;
 
+import net.kitesoftware.holograms.HolographicExtension;
 import net.kitesoftware.holograms.command.subs.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,17 +18,19 @@ import java.util.List;
 
 public class CommandHandler implements CommandExecutor, TabCompleter {
 
+    private HolographicExtension plugin;
     private List<BaseCommand> commandList;
 
-    public CommandHandler() {
+    public CommandHandler(HolographicExtension plugin) {
+        this.plugin = plugin;
         commandList = new ArrayList<>();
 
         //Register subcommands
         registerCommand(new CommandHelp(this));
-        registerCommand(new CommandList());
-        registerCommand(new CommandInfo());
-        registerCommand(new CommandAbout());
-        registerCommand(new CommandReload());
+        registerCommand(new CommandList(this));
+        registerCommand(new CommandInfo(this));
+        registerCommand(new CommandAbout(this));
+        registerCommand(new CommandReload(this));
     }
 
     public List<BaseCommand> getCommands() {
@@ -67,5 +70,9 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] strings) {
         return null;
+    }
+
+    public HolographicExtension getPlugin() {
+        return plugin;
     }
 }

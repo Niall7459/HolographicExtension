@@ -15,11 +15,14 @@ public abstract class BaseCommand {
 
     private int minimumArgs;
 
-    public BaseCommand(String name, String description, String possibleArgs, int minimumArgs) {
+    private CommandHandler commandHandler;
+
+    public BaseCommand(String name, String description, String possibleArgs, int minimumArgs, CommandHandler commandHandler) {
         this.name = name;
         this.description = description;
         this.possibleArgs = possibleArgs;
         this.minimumArgs = minimumArgs;
+        this.commandHandler = commandHandler;
     }
 
     public String getName() {
@@ -36,6 +39,10 @@ public abstract class BaseCommand {
 
     int getMinimumArgs() {
         return minimumArgs;
+    }
+
+    protected CommandHandler getCommandHandler() {
+        return commandHandler;
     }
 
     public abstract boolean execute(CommandSender sender, String label, String[] args);

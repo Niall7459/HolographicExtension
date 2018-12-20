@@ -18,8 +18,13 @@ import java.util.List;
 public class ConfigFile {
 
     private FileConfiguration config;
+    private HolographicExtension plugin;
 
-    public void reload(Plugin plugin) {
+    public ConfigFile(HolographicExtension plugin) {
+        this.plugin = plugin;
+    }
+
+    public void reload() {
         File configFile = new File(plugin.getDataFolder(), "animations.yml");
 
         if (!configFile.exists()) {
@@ -37,10 +42,10 @@ public class ConfigFile {
             List<String> frames = section.getStringList("frames");
             Double speed = section.getDouble("speed");
 
-            frames = Utils.setAnimations(frames);
+            frames = Utils.setAnimations(frames, plugin.getAnimationRegister());
 
             ConfigAnimation animation = new ConfigAnimation(animationName, speed, frames);
-            HolographicExtension.getInstance().getUserAnimationManager().registerAnimation(animation);
+            plugin.getUserAnimationManager().registerAnimation(animation);
         }
     }
 

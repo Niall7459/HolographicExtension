@@ -8,21 +8,20 @@ package net.kitesoftware.holograms.command.subs;
 import net.kitesoftware.holograms.HolographicExtension;
 import net.kitesoftware.holograms.UserAnimationManager;
 import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigAnimation;
 import net.kitesoftware.holograms.exception.AnimationNotFoundException;
 import org.bukkit.command.CommandSender;
 
 public class CommandInfo extends BaseCommand {
 
-    private static final String LINK = "";
-
-    public CommandInfo() {
-        super("info", "See animation information", "[animation] [show frames? true/false]", 0);
+    public CommandInfo(CommandHandler commandHandler) {
+        super("info", "See animation information", "[animation] [show frames? true/false]", 0, commandHandler);
     }
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args)  {
-        UserAnimationManager man = HolographicExtension.getInstance().getUserAnimationManager();
+        UserAnimationManager man = getCommandHandler().getPlugin().getUserAnimationManager();
         if(args.length == 0) {
             sender.sendMessage("§eThere are §f" + man.getRegisteredAnimations().size() + "§e Animations loaded.");
             sender.sendMessage("§7Use §f/" + label + " info §e[animation] §7For more information.");

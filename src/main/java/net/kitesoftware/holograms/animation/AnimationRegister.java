@@ -40,7 +40,7 @@ public class AnimationRegister {
         frames.add(text);
 
         for (BaseAnimation animation : getAnimations()) {
-            String regex = "(.*?)(<NAME(.*?)+>)(.*?)(</NAME+>)(.*?)$".replace("NAME", animation.getName());
+            String regex = "(.*?)(<" + animation.getName() + "(.*?)+>)(.*?)(</" + animation.getName() + "+>)(.*?)$";
 
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
