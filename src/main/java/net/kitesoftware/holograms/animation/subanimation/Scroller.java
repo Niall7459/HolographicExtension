@@ -3,10 +3,10 @@
  * Email: niall_lindsay@icloud.com
  */
 
-package net.kitesoftware.holograms.animation.subs;
+package net.kitesoftware.holograms.animation.subanimation;
 
-import net.kitesoftware.holograms.animation.BaseAnimation;
-import net.kitesoftware.holograms.util.Utils;
+import net.kitesoftware.holograms.animation.iface.Animation;
+import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -14,19 +14,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Scroller extends BaseAnimation {
+public class Scroller implements Animation, ConfigurableAnimation {
 
-    public Scroller() {
-        super("scroll", "Create scrolling text", new HashMap<String, String>() {{
-            put("width", "32");
-            put("space", "16");
-        }});
+    private HashMap<String, String> options = new HashMap<String, String>() {{
+        put("width", "32");
+        put("space", "32");
+    }};
+
+    @Override
+    public String getName() {
+        return "scroll";
     }
 
     @Override
-    public List<String> setAnimations(String text, Map<String, String> options) {
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+    @Override
+    public List<String> create(String text, Map<String, String> options) {
         List<String> frames = new ArrayList<>();
-        options = Utils.mergeMap(getOptions(), options);
 
         int width = Integer.parseInt(options.get("width"));
         int space = Integer.parseInt(options.get("space"));
@@ -87,9 +94,7 @@ public class Scroller extends BaseAnimation {
             }
 
             frames.add(stored + builder.substring(1));
-
         }
-
         return frames;
     }
 }

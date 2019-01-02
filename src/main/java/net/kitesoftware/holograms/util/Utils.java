@@ -5,9 +5,7 @@
 
 package net.kitesoftware.holograms.util;
 
-import net.kitesoftware.holograms.HolographicExtension;
 import net.kitesoftware.holograms.animation.AnimationRegister;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -65,5 +63,15 @@ public class Utils {
         }
 
         return outputFrames;
+    }
+
+    public static String alignText(String text, int width, boolean right) {
+        StringBuilder space = new StringBuilder();
+
+        for(int i = 0; i < (width - text.length()); i++) {
+            space.append(" ");
+        }
+
+        return right ? (space + text) : (text + space);
     }
 }

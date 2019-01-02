@@ -3,36 +3,40 @@
  * Email: niall_lindsay@icloud.com
  */
 
-package net.kitesoftware.holograms.animation.subs;
+package net.kitesoftware.holograms.animation.subanimation;
 
-import net.kitesoftware.holograms.animation.BaseAnimation;
-import net.kitesoftware.holograms.util.Utils;
-import org.bukkit.Bukkit;
+import net.kitesoftware.holograms.animation.iface.Animation;
+import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Glow extends BaseAnimation {
+public class Glow implements Animation, ConfigurableAnimation {
 
-    public Glow() {
-        super("glow", "Make a text glow certain colors", new HashMap<String, String>() {{
-            //Default glow options.
+    private HashMap<String, String> options = new HashMap<String, String>() {{
             put("normal", "§7§l");
-            put("start","§d§l");
-            put("middle","§5§l");
-            put("end","§d§l");
-            put("size","5");
-            put("pause","10");
-        }});
+            put("start", "§d§l");
+            put("middle", "§5§l");
+            put("end", "§d§l");
+            put("size", "5");
+            put("pause", "10");
+    }};
+
+    @Override
+    public String getName() {
+        return "glow";
     }
 
     @Override
-    public List<String> setAnimations(String text, Map<String, String> options) {
+    public Map<String, String> getOptions() {
+        return options;
+    }
 
+    @Override
+    public List<String> create(String text, Map<String, String> options) {
         ArrayList<String> frames = new ArrayList<>();
-        options = Utils.mergeMap(getOptions(), options);
 
         String normalFormat = options.get("normal");
         String startFormat =  options.get("start");

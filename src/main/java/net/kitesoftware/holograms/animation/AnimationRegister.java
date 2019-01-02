@@ -5,59 +5,62 @@
 
 package net.kitesoftware.holograms.animation;
 
-import net.kitesoftware.holograms.animation.subs.*;
+import net.kitesoftware.holograms.animation.iface.Animation;
+import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 import net.kitesoftware.holograms.util.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AnimationRegister {
 
-    private List<BaseAnimation> animationList;
+    private List<Animation> registeredAnimations;
 
     public AnimationRegister() {
-        animationList = new ArrayList<>();
+        registeredAnimations = new ArrayList<>();
+        registerDefaultAnimations();
+    }
 
-        registerAnimation(new Blink());
-        registerAnimation(new Typewriter());
-        registerAnimation(new Pulse());
-        registerAnimation(new Glow());
-        registerAnimation(new Scroller());
-        registerAnimation(new Rainbow());
-        registerAnimation(new Pause());
-        registerAnimation(new Left());
-        registerAnimation(new Right());
-        registerAnimation(new Fadein());
-        registerAnimation(new Fadeout());
+    private void registerDefaultAnimations() {
+        for (DefaultAnimation anim : DefaultAnimation.values()) {
+            registerAnimation(anim.getAnimation());
+        }
+    }
+
+    /**
+     * Register an custom animation.
+     * @param animation
+     */
+    public void registerAnimation(Animation animation) {
+        registeredAnimations.add(animation);
     }
 
     public List<String> setAnimations(String text) {
         List<String> frames = new ArrayList<>();
-        frames.add(text);
 
-        for (BaseAnimation animation : getAnimations()) {
-            String regex = "(.*?)(<" + animation.getName() + "(.*?)+>)(.*?)(</" + animation.getName() + "+>)(.*?)$";
-
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(text);
+        for (Animation animation : registeredAnimations) {
+            Matcher matcher = animation.getMatcher(text);
 
             if (matcher.find()) {
-                frames.remove(0);
+                List<String> animationFrames;
 
-                String options = matcher.group(2);
                 String value = matcher.group(4);
+                String options = (matcher.group(2).length() > 0 ? matcher.group(2).substring(1) : matcher.group(2));
 
-                HashMap<String, String> optionsMap = Utils.decodeOptions(options);
-                List<String> animationFrames = animation.setAnimations(value, optionsMap);
+                if (animation instanceof ConfigurableAnimation) {
+                    ConfigurableAnimation configAnimation = (ConfigurableAnimation) animation;
 
-                if (animationFrames == null) {
-                    frames.add("Invalid animation configuration.");
-                    Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §cInvalid animation string detected for: " + text);
+                    Map<String, String> optionsMap = Utils.mergeMap(configAnimation.getOptions(), Utils.decodeOptions(options));
+                    animationFrames = ((ConfigurableAnimation) animation).create(value, optionsMap);
                 } else {
+                    animationFrames = animation.create(value);
+                }
+
+                if (animationFrames != null) {
                     String before = matcher.group(1);
                     String after = matcher.group(6);
 
@@ -66,14 +69,10 @@ public class AnimationRegister {
             }
         }
 
+        if (frames.size() < 1) {
+            frames.add(text);
+        }
+
         return frames;
-    }
-
-    private void registerAnimation(BaseAnimation animation) {
-        animationList.add(animation);
-    }
-
-    private List<BaseAnimation> getAnimations() {
-        return animationList;
     }
 }

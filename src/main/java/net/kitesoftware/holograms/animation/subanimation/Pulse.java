@@ -3,29 +3,36 @@
  * Email: niall_lindsay@icloud.com
  */
 
-package net.kitesoftware.holograms.animation.subs;
+package net.kitesoftware.holograms.animation.subanimation;
 
-import net.kitesoftware.holograms.animation.BaseAnimation;
-import net.kitesoftware.holograms.util.Utils;
+import net.kitesoftware.holograms.animation.iface.Animation;
+import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Pulse extends BaseAnimation {
+public class Pulse implements Animation, ConfigurableAnimation {
 
-    public Pulse() {
-        super("pulse", "Create a pulsating text", new HashMap<String, String>() {{
-            put("color", "multi");
-            put("pause", "1");
-        }});
+    private Map<String, String> options = new HashMap<String, String>() {{
+        put("color", "multi");
+        put("pause", "1");
+    }};
+
+    @Override
+    public String getName() {
+        return "pulse";
     }
 
     @Override
-    public List<String> setAnimations(String text, Map<String, String> options) {
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+    @Override
+    public List<String> create(String text, Map<String, String> options) {
         ArrayList<String> frames = new ArrayList<String>();
-        options = Utils.mergeMap(getOptions(), options);
 
         int pause = Integer.parseInt(options.get("pause"));
         String fadeto = options.get("color").toLowerCase();
