@@ -49,6 +49,10 @@ public class Glow implements Animation, ConfigurableAnimation {
         int length = text.length();
         int iterations = length + size + 2 + 1;
 
+        if (size > length) {
+            size = length;
+        }
+
         int startsub = 0;
         int endsub = 0;
 
