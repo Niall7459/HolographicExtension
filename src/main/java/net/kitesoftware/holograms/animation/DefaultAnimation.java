@@ -15,7 +15,7 @@ public enum DefaultAnimation {
     FADE_IN         (Fade.IN),
     FADE_OUT        (Fade.OUT),
     BLINK           (new Blink()),
-    WIPE_OUT        (new Wipe()),
+    ERASE           (new Erase()),
     GLOW            (new Glow()),
     PAUSE           (new Pause()),
     PULSE           (new Pulse()),

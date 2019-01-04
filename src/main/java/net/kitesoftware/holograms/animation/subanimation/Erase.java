@@ -10,7 +10,7 @@ import org.bukkit.ChatColor;
 
 import java.util.*;
 
-public class Wipe implements Animation {
+public class Erase implements Animation {
 
     @Override
     public String getName() {
