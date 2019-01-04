@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Glow implements Animation, ConfigurableAnimation {
+public class Glow implements ConfigurableAnimation {
 
     private HashMap<String, String> options = new HashMap<String, String>() {{
             put("normal", "§7§l");

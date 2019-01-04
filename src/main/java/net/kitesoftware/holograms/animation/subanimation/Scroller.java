@@ -5,7 +5,6 @@
 
 package net.kitesoftware.holograms.animation.subanimation;
 
-import net.kitesoftware.holograms.animation.iface.Animation;
 import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 import org.bukkit.ChatColor;
 
@@ -14,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Scroller implements Animation, ConfigurableAnimation {
+public class Scroller implements ConfigurableAnimation {
 
     private HashMap<String, String> options = new HashMap<String, String>() {{
         put("width", "32");

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Typewriter implements Animation, ConfigurableAnimation {
+public class Typewriter implements ConfigurableAnimation {
 
     private HashMap<String, String> options = new HashMap<String, String>() {{
         put("cursor", "_");

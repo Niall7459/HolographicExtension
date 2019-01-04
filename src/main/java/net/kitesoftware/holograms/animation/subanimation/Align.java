@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public enum Align implements Animation, ConfigurableAnimation {
+public enum Align implements ConfigurableAnimation {
 
     LEFT {
         @Override

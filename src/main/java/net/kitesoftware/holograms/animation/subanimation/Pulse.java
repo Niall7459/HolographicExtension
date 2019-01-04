@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Pulse implements Animation, ConfigurableAnimation {
+public class Pulse implements ConfigurableAnimation {
 
     private Map<String, String> options = new HashMap<String, String>() {{
         put("color", "multi");

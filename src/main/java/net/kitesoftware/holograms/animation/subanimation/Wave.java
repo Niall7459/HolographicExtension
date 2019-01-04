@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class Wave implements Animation, ConfigurableAnimation {
+public class Wave implements ConfigurableAnimation {
 
     private Map<String, String> options = Collections.singletonMap(
             "colors", "§c,§e,§6,§a,§9,§1,§d");

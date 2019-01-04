@@ -5,7 +5,6 @@
 
 package net.kitesoftware.holograms.animation.subanimation;
 
-import net.kitesoftware.holograms.animation.iface.Animation;
 import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Pause implements Animation, ConfigurableAnimation {
+public class Pause implements ConfigurableAnimation {
 
     private Map<String, String> options = new HashMap<String, String>() {{
         put("times", "10");
