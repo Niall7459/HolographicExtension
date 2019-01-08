@@ -27,9 +27,9 @@ public class UpdateChecker {
         this.resourceID = resourceID;
     }
 
-    private CompletableFuture<UpdateStatus> checkUpdates() {
+    public CompletableFuture<UpdateStatus> checkUpdates() {
         return CompletableFuture.supplyAsync(() -> {
-            int responseCode = 0;
+            int responseCode;
 
             try {
                 URL url = new URL(API_URL + resourceID);
@@ -57,14 +57,6 @@ public class UpdateChecker {
 
             return UpdateStatus.UNAVAILABLE;
         });
-    }
-
-    public UpdateStatus checkForUpdate() {
-        try {
-            return checkUpdates().get();
-        } catch (InterruptedException | ExecutionException e) {
-            return UpdateStatus.UNAVAILABLE;
-        }
     }
 
     public enum UpdateStatus {

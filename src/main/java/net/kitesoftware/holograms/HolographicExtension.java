@@ -49,12 +49,13 @@ public class HolographicExtension extends JavaPlugin {
         hookProtocolLib();
 
         UpdateChecker updateChecker = new UpdateChecker(this, 18461);
-        UpdateChecker.UpdateStatus status = updateChecker.checkForUpdate();
-        if (status.equals(UpdateChecker.UpdateStatus.MISMATCH)) {
-            Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fA new update is available for download at https://www.spigotmc.org/resources/holographicextension.18461/");
-        } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)){
-            Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fUpdate checking is unavailable at this time.");
-        }
+        updateChecker.checkUpdates().whenComplete((status, error) -> {
+            if (status.equals(UpdateChecker.UpdateStatus.MISMATCH)) {
+                Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fA new update is available for download at https://www.spigotmc.org/resources/holographicextension.18461/");
+            } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)){
+                Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fUpdate checking is unavailable at this time.");
+            }
+        });
 
         new Metrics(this);
     }

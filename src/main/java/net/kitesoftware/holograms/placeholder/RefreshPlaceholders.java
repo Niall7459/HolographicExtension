@@ -15,7 +15,7 @@ public class RefreshPlaceholders {
 
     public void register(Plugin plugin) {
 
-        List<String> changingTextImitation = Arrays.asList("§o §r", "§k §r");
+        List<String> changingTextImitation = Arrays.asList("§o §r", "§r §r");
 
         HologramsAPI.registerPlaceholder(plugin, "{fastest}", 0.1, new HextPlaceholderReplacer(
                 changingTextImitation
