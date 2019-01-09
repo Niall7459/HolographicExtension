@@ -10,7 +10,6 @@ import net.kitesoftware.holograms.util.Utils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.util.List;
@@ -42,14 +41,10 @@ public class ConfigFile {
             List<String> frames = section.getStringList("frames");
             Double speed = section.getDouble("speed");
 
-            frames = Utils.setAnimations(frames, plugin.getAnimationRegister());
+            frames = Utils.setAnimations(frames, plugin.getAnimationRegistry());
 
             ConfigAnimation animation = new ConfigAnimation(animationName, speed, frames);
             plugin.getUserAnimationManager().registerAnimation(animation);
         }
-    }
-
-    public FileConfiguration getConfig() {
-        return config;
     }
 }

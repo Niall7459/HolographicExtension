@@ -5,11 +5,11 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
 import org.bukkit.command.CommandSender;
 
-public class CommandAbout extends BaseCommand {
+public class CommandAbout extends SubCommand {
 
     public CommandAbout(CommandHandler commandHandler) {
         super("about", "Display plugin information", "", 0, commandHandler);

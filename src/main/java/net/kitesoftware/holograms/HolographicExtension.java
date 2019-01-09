@@ -5,7 +5,7 @@
 
 package net.kitesoftware.holograms;
 
-import net.kitesoftware.holograms.animation.AnimationRegister;
+import net.kitesoftware.holograms.animation.AnimationRegistry;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigFile;
 import net.kitesoftware.holograms.metrics.Metrics;
@@ -16,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class HolographicExtension extends JavaPlugin {
 
-    private AnimationRegister animationRegister;
+    private AnimationRegistry animationRegistry;
     private ProtocolHook protocolHook;
     private ConfigFile config;
     private UserAnimationManager userAnimationManager;
@@ -37,7 +37,7 @@ public class HolographicExtension extends JavaPlugin {
             this.setEnabled(false);
         }
 
-        animationRegister = new AnimationRegister();
+        animationRegistry = new AnimationRegistry();
 
         getCommand("hext").setExecutor(commandHandler);
         getCommand("hext").setTabCompleter(commandHandler);
@@ -79,8 +79,8 @@ public class HolographicExtension extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fDisabling HolographicExtension v" + version);
     }
 
-    public AnimationRegister getAnimationRegister() {
-        return animationRegister;
+    public AnimationRegistry getAnimationRegistry() {
+        return animationRegistry;
     }
 
     public UserAnimationManager getUserAnimationManager() {

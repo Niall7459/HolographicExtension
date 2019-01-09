@@ -7,7 +7,7 @@ package net.kitesoftware.holograms.command;
 
 import org.bukkit.command.CommandSender;
 
-public abstract class BaseCommand {
+public abstract class SubCommand {
 
     private String name;
     private String description;
@@ -17,7 +17,7 @@ public abstract class BaseCommand {
 
     private CommandHandler commandHandler;
 
-    public BaseCommand(String name, String description, String possibleArgs, int minimumArgs, CommandHandler commandHandler) {
+    public SubCommand(String name, String description, String possibleArgs, int minimumArgs, CommandHandler commandHandler) {
         this.name = name;
         this.description = description;
         this.possibleArgs = possibleArgs;

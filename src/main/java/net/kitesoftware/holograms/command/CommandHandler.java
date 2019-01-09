@@ -19,7 +19,7 @@ import java.util.List;
 public class CommandHandler implements CommandExecutor, TabCompleter {
 
     private HolographicExtension plugin;
-    private List<BaseCommand> commandList;
+    private List<SubCommand> commandList;
 
     public CommandHandler(HolographicExtension plugin) {
         this.plugin = plugin;
@@ -33,11 +33,11 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         registerCommand(new CommandReload(this));
     }
 
-    public List<BaseCommand> getCommands() {
+    public List<SubCommand> getCommands() {
         return commandList;
     }
 
-    public void registerCommand(BaseCommand command) {
+    private void registerCommand(SubCommand command) {
         commandList.add(command);
     }
 
@@ -48,7 +48,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        for (BaseCommand subCommand : getCommands()) {
+        for (SubCommand subCommand : getCommands()) {
             if (subCommand.getName().equalsIgnoreCase(args[0])) {
                 if (subCommand.getMinimumArgs() <= args.length - 1) {
                     //Remove the first arg from the array so it starts at 0 for our sub commands.

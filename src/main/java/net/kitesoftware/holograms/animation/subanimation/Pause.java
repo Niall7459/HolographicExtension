@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class Pause implements ConfigurableAnimation {
 
-    private Map<String, String> options = new HashMap<String, String>() {{
+    private static final Map<String, String> DEFAULTS = new HashMap<String, String>() {{
         put("times", "10");
     }};
 
@@ -25,7 +25,7 @@ public class Pause implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override

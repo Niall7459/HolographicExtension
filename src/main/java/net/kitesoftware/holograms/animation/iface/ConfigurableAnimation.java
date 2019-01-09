@@ -13,4 +13,9 @@ public interface ConfigurableAnimation extends Animation {
     Map<String, String> getOptions();
     List<String> create(String text, Map<String, String> options);
 
+    //Not used on configurable animations.
+    default List<String> create(String text) {
+        return create(text, null);
+    }
+
 }

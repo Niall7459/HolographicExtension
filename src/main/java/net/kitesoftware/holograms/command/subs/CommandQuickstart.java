@@ -5,10 +5,10 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.SubCommand;
 import org.bukkit.command.CommandSender;
 
-public class CommandQuickstart extends BaseCommand {
+public class CommandQuickstart extends SubCommand {
 
     //Currently unused.
     public CommandQuickstart() {

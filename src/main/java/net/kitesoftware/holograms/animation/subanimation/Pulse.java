@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Pulse implements ConfigurableAnimation {
 
-    private Map<String, String> options = new HashMap<String, String>() {{
+    private static final Map<String, String> DEFAULTS = new HashMap<String, String>() {{
         put("color", "multi");
         put("pause", "1");
     }};
@@ -27,12 +27,12 @@ public class Pulse implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override
     public List<String> create(String text, Map<String, String> options) {
-        ArrayList<String> frames = new ArrayList<String>();
+        ArrayList<String> frames = new ArrayList<>();
 
         int pause = Integer.parseInt(options.get("pause"));
         String fadeto = options.get("color").toLowerCase();

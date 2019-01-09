@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Typewriter implements ConfigurableAnimation {
 
-    private HashMap<String, String> options = new HashMap<String, String>() {{
+    private HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
         put("cursor", "_");
         put("pause", "10");
         put("reverse", "true");
@@ -28,7 +28,7 @@ public class Typewriter implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override

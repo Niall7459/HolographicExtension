@@ -10,21 +10,20 @@ import java.util.List;
 public class ConfigAnimation {
 
     private String name;
-    private Double refresh;
+    private double refresh;
     private List<String> frames;
 
-    ConfigAnimation(String name, Double refresh, List<String> frames) {
+    ConfigAnimation(String name, double refresh, List<String> frames) {
         this.name = name;
         this.refresh = refresh;
         this.frames = frames;
     }
 
-
     public String getName() {
         return name;
     }
 
-    public Double getRefreshRate() {
+    public double getRefreshRate() {
         return refresh;
     }
 

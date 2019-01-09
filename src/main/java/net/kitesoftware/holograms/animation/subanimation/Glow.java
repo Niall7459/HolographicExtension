@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Glow implements ConfigurableAnimation {
 
-    private HashMap<String, String> options = new HashMap<String, String>() {{
+    private static final HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
             put("normal", "§7§l");
             put("start", "§d§l");
             put("middle", "§5§l");
@@ -31,7 +31,7 @@ public class Glow implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override

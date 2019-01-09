@@ -5,13 +5,12 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.HolographicExtension;
-import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigAnimation;
 import org.bukkit.command.CommandSender;
 
-public class CommandList extends BaseCommand {
+public class CommandList extends SubCommand {
 
     public CommandList(CommandHandler commandHandler) {
         super("list", "Lists all configured animations", "", 0, commandHandler);

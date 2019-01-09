@@ -5,15 +5,14 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.HolographicExtension;
 import net.kitesoftware.holograms.UserAnimationManager;
-import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigAnimation;
 import net.kitesoftware.holograms.exception.AnimationNotFoundException;
 import org.bukkit.command.CommandSender;
 
-public class CommandInfo extends BaseCommand {
+public class CommandInfo extends SubCommand {
 
     public CommandInfo(CommandHandler commandHandler) {
         super("info", "See animation information", "[animation] [show frames? true/false]", 0, commandHandler);

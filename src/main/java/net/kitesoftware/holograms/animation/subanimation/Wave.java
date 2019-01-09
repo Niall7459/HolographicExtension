@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class Wave implements ConfigurableAnimation {
 
-    private Map<String, String> options = Collections.singletonMap(
+    private static final Map<String, String> DEFAULTS = Collections.singletonMap(
             "colors", "§c,§e,§6,§a,§9,§1,§d");
 
     @Override
@@ -26,7 +26,7 @@ public class Wave implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Wave implements ConfigurableAnimation {
         int index = 0;
 
         for (String ignored : colors) {
-            StringBuilder cframe = new StringBuilder();
+            StringBuilder currentFrame = new StringBuilder();
 
 
             for (char c : text.toCharArray()) {
@@ -52,11 +52,11 @@ public class Wave implements ConfigurableAnimation {
                     index = 0;
                 }
 
-                cframe.append(result).append(c);
+                currentFrame.append(result).append(c);
             }
 
             index = ++counter;
-            frames.add(cframe.toString());
+            frames.add(currentFrame.toString());
         }
         return frames;
     }

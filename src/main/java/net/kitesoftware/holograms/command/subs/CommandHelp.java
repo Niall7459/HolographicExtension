@@ -5,11 +5,11 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.command.BaseCommand;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
 import org.bukkit.command.CommandSender;
 
-public class CommandHelp extends BaseCommand {
+public class CommandHelp extends SubCommand {
 
     public CommandHelp(CommandHandler commandHandler) {
         super("help", "Display all commands", "", 0, commandHandler);
@@ -18,7 +18,7 @@ public class CommandHelp extends BaseCommand {
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
 
-        for (BaseCommand command : getCommandHandler().getCommands()) {
+        for (SubCommand command : getCommandHandler().getCommands()) {
             sender.sendMessage("§e/" + label + " " + command.getName() + " " + command.getPossibleArgs());
             sender.sendMessage("§7" + command.getDescription());
         }

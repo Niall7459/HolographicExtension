@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Scroller implements ConfigurableAnimation {
 
-    private HashMap<String, String> options = new HashMap<String, String>() {{
+    private static final HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
         put("width", "32");
         put("space", "32");
     }};
@@ -27,7 +27,7 @@ public class Scroller implements ConfigurableAnimation {
 
     @Override
     public Map<String, String> getOptions() {
-        return options;
+        return DEFAULTS;
     }
 
     @Override
@@ -58,14 +58,14 @@ public class Scroller implements ConfigurableAnimation {
 
         StringBuilder spacing = new StringBuilder();
         for (int i = 0; i < space; ++i) {
-            temp.add(text.substring(text.length() - width + (i > width ? width : i), text.length()) + spacing);
+            temp.add(text.substring(text.length() - width + (i > width ? width : i)) + spacing);
             if(spacing.length() < width) {
                 spacing.append(" ");
             }
         }
 
         for (int i = 0; i < width - space; ++i)
-            temp.add(text.substring(text.length() - width + space + i, text.length()) + spacing + text.substring(0, i));
+            temp.add(text.substring(text.length() - width + space + i) + spacing + text.substring(0, i));
 
         for (int i = 0; i < space; i++) {
             if (i > spacing.length()) break;

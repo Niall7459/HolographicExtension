@@ -5,7 +5,7 @@
 
 package net.kitesoftware.holograms.util;
 
-import net.kitesoftware.holograms.animation.AnimationRegister;
+import net.kitesoftware.holograms.animation.AnimationRegistry;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -31,26 +31,30 @@ public class Utils {
         return out;
     }
 
-    public static HashMap<String, String> decodeOptions(String text) {
-        text = text.replace("<","").replace(">", "");
+    public static Map<String, String> decodeOptions(String text) {
+        Map<String, String> options = new HashMap<>();
 
-        HashMap<String, String> options = new HashMap<>();
-        if(!text.contains(" ")) return options;
+        if(!text.contains(" "))  {
+            return parseParametersToMap(text, options);
+        }
 
-        for(String keyvalue : text.split(" ")) {
-            if(!keyvalue.contains("=")) continue;
-            String key = keyvalue.split("=")[0];
-
-            String value = keyvalue.split("=")[1];
-            value = value.replace("\"", "");
-
-            options.put(key, value);
+        for(String parameter : text.split(" ")) {
+            parseParametersToMap(parameter, options);
         }
 
         return options;
     }
 
-    public static List<String> setAnimations(List<String> frames, AnimationRegister register) {
+    private static Map<String, String> parseParametersToMap(String parameter, Map<String, String> map) {
+        if (parameter.contains("=")) {
+            String[] parts = parameter.split("=", 2);
+            map.put(parts[0], parts[1]);
+        }
+
+        return map;
+    }
+
+    public static List<String> setAnimations(List<String> frames, AnimationRegistry register) {
         List<String> outputFrames = new ArrayList<>();
 
         for (String frame : frames) {
