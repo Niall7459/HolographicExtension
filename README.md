@@ -1,5 +1,6 @@
 <p align="center">
   <img src="https://www.spigotmc.org/attachments/screen-shot-2016-02-15-at-11-13-36-png.103584/" alt="Holographic Extension">
+  <img src="https://api.kitesoftware.net/live/?plugin=HolographicExtension" alt="Live statistics">
 </p>
 
 # About
