@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2016-2018 Niall Lindsay
- * Email: niall_lindsay@icloud.com
+ * Copyright (c) 2016-2019 Niall Lindsay
+ *
  */
 
 package net.kitesoftware.holograms;
@@ -42,22 +42,24 @@ public class HolographicExtension extends JavaPlugin {
         getCommand("hext").setExecutor(commandHandler);
         getCommand("hext").setTabCompleter(commandHandler);
 
+        saveDefaultConfig();
         userAnimationManager = new UserAnimationManager(this);
         config = new ConfigFile(this);
         config.reload();
 
         hookProtocolLib();
+        new Metrics(this);
+
+        if (!getConfig().getBoolean("enable-update-check")) return;
 
         UpdateChecker updateChecker = new UpdateChecker(this, 18461);
         updateChecker.checkUpdates().whenComplete((status, error) -> {
-            if (status.equals(UpdateChecker.UpdateStatus.MISMATCH)) {
+            if (status.equals(UpdateChecker.UpdateStatus.DIFFERENT_VERSION)) {
                 Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fA new update is available for download at https://www.spigotmc.org/resources/holographicextension.18461/");
             } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)){
                 Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fUpdate checking is unavailable at this time.");
             }
         });
-
-        new Metrics(this);
     }
 
     public void hookProtocolLib() {

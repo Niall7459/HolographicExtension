@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2016-2018 Niall Lindsay
- * Email: niall_lindsay@icloud.com
+ * Copyright (c) 2016-2019 Niall Lindsay
+ *
  */
 
 package net.kitesoftware.holograms.updater;
@@ -47,7 +47,7 @@ public class UpdateChecker {
                 if(latestVersion.equals(currentVersion)) {
                     return UpdateStatus.UP_TO_DATE;
                 } else {
-                    return UpdateStatus.MISMATCH;
+                    return UpdateStatus.DIFFERENT_VERSION;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -59,7 +59,7 @@ public class UpdateChecker {
 
     public enum UpdateStatus {
         UP_TO_DATE,
-        MISMATCH,
+        DIFFERENT_VERSION,
         UNAVAILABLE
     }
 

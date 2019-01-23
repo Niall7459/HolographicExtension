@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2016-2018 Niall Lindsay
- * Email: niall_lindsay@icloud.com
+ * Copyright (c) 2016-2019 Niall Lindsay
+ *
  */
 package net.kitesoftware.holograms.listener;
 
