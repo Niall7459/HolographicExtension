@@ -8,9 +8,6 @@ package net.kitesoftware.holograms.animation;
 import net.kitesoftware.holograms.animation.iface.Animation;
 import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 import net.kitesoftware.holograms.util.Utils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 import java.util.Collections;

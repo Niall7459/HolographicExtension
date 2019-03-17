@@ -57,10 +57,5 @@ public class UpdateChecker {
         });
     }
 
-    public enum UpdateStatus {
-        UP_TO_DATE,
-        DIFFERENT_VERSION,
-        UNAVAILABLE
-    }
-
+    public enum UpdateStatus { UP_TO_DATE, DIFFERENT_VERSION, UNAVAILABLE }
 }

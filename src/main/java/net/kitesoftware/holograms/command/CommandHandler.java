@@ -7,6 +7,7 @@ package net.kitesoftware.holograms.command;
 
 import net.kitesoftware.holograms.HolographicExtension;
 import net.kitesoftware.holograms.command.subs.*;
+import net.kitesoftware.holograms.config.ConfigAnimation;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,7 +26,6 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         this.plugin = plugin;
         commandList = new ArrayList<>();
 
-        //Register subcommands
         registerCommand(new CommandHelp(this));
         registerCommand(new CommandList(this));
         registerCommand(new CommandInfo(this));
@@ -51,7 +51,6 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         for (SubCommand subCommand : getCommands()) {
             if (subCommand.getName().equalsIgnoreCase(args[0])) {
                 if (subCommand.getMinimumArgs() <= args.length - 1) {
-                    //Remove the first arg from the array so it starts at 0 for our sub commands.
                     if (commandSender.hasPermission("holographic-extension." + subCommand.getName())) {
                         return subCommand.execute(commandSender, label, Arrays.copyOfRange(args, 1, args.length));
                     } else{
@@ -68,8 +67,33 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] strings) {
-        return null;
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
+        List<String> completions = new ArrayList<>();
+
+        for (SubCommand subCommand : commandList) {
+            if (args.length > 1) {
+                if (args[0].equalsIgnoreCase("info") && subCommand.getName().equalsIgnoreCase("info")) {
+                    if (args.length == 2) {
+                        for (ConfigAnimation animation : plugin.getUserAnimationManager().getRegisteredAnimations()) {
+                            if (animation.getName().startsWith(args[1])) {
+                                completions.add(animation.getName());
+                            }
+                        }
+                        return completions;
+                    } else if (args.length == 3) {
+                        if (args[2].length() == 0 || "true".startsWith(args[2])) completions.add("true");
+                        if (args[2].length() == 0 || "false".startsWith(args[2])) completions.add("false");
+                        return completions;
+                    }
+                }
+            } else {
+                if (subCommand.getName().startsWith(args[0])) {
+                    completions.add(subCommand.getName());
+                }
+            }
+        }
+
+        return completions;
     }
 
     public HolographicExtension getPlugin() {

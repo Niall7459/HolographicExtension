@@ -3,7 +3,7 @@
  *
  */
 
-package net.kitesoftware.holograms.animation.subanimation;
+package net.kitesoftware.holograms.animation.impl;
 
 import net.kitesoftware.holograms.animation.iface.Animation;
 import org.bukkit.ChatColor;

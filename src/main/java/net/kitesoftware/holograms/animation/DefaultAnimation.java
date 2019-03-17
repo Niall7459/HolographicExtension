@@ -6,10 +6,9 @@
 package net.kitesoftware.holograms.animation;
 
 import net.kitesoftware.holograms.animation.iface.Animation;
-import net.kitesoftware.holograms.animation.subanimation.*;
+import net.kitesoftware.holograms.animation.impl.*;
 
 public enum DefaultAnimation {
-
     ALIGN_LEFT      (Align.LEFT),
     ALIGN_RIGHT     (Align.RIGHT),
     FADE_IN         (Fade.IN),

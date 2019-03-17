@@ -32,5 +32,4 @@ public class ProtocolHook {
     public void disable() {
         ProtocolLibrary.getProtocolManager().removePacketListeners(plugin);
     }
-
 }

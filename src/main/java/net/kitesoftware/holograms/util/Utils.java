@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Utils {
-
     public static Map<String, String> mergeMap(Map<String, String> defaults, Map<String, String> overrides) {
         Map<String, String> mergedMap = new HashMap<>(defaults);
         for (String key : defaults.keySet())

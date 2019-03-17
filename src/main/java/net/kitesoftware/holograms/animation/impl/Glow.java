@@ -3,9 +3,8 @@
  *
  */
 
-package net.kitesoftware.holograms.animation.subanimation;
+package net.kitesoftware.holograms.animation.impl;
 
-import net.kitesoftware.holograms.animation.iface.Animation;
 import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
 
 import java.util.ArrayList;
@@ -16,11 +15,11 @@ import java.util.Map;
 public class Glow implements ConfigurableAnimation {
 
     private static final HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
-            put("normal", "§7§l");
-            put("start", "§d§l");
-            put("middle", "§5§l");
-            put("end", "§d§l");
-            put("size", "5");
+            put("normal", "§e");
+            put("start", "§d");
+            put("middle", "§5");
+            put("end", "§d");
+            put("size", "3");
             put("pause", "10");
     }};
 
