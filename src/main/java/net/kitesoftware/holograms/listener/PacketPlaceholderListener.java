@@ -19,15 +19,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class PacketPlaceholderListener extends PacketAdapter {
-
-    private static final int CUSTOM_NAME_WATCH_INDEX = 2;
     private boolean useOptional = false;
 
     public PacketPlaceholderListener(AdapterParameteters params) {
         super(params);
 
         String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        if(version.equals("v1_13_R1") || version.equals("v1_13_R2")) {
+        if(version.equals("v1_13_R1") || version.equals("v1_13_R2") || version.equals("v1_14_R1")) {
             useOptional = true;
         }
     }
