@@ -19,14 +19,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class PacketPlaceholderListener extends PacketAdapter {
-    private boolean useOptional = false;
+    private boolean useOptional = true;
 
     public PacketPlaceholderListener(AdapterParameteters params) {
         super(params);
 
         String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        if(version.equals("v1_13_R1") || version.equals("v1_13_R2") || version.equals("v1_14_R1") || version.equals("v1_15_R1")) {
-            useOptional = true;
+        String majorVersion = version.split("_")[1];
+        if (majorVersion.contains("_")) {
+            majorVersion = majorVersion.split("_")[0];
+        }
+        if (Integer.parseInt(majorVersion) < 13) {
+            useOptional = false;
         }
     }
 
