@@ -25,7 +25,7 @@ public class PacketPlaceholderListener extends PacketAdapter {
         super(params);
 
         String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        if(version.equals("v1_13_R1") || version.equals("v1_13_R2") || version.equals("v1_14_R1")) {
+        if(version.equals("v1_13_R1") || version.equals("v1_13_R2") || version.equals("v1_14_R1") || version.equals("v1_15_R1")) {
             useOptional = true;
         }
     }
