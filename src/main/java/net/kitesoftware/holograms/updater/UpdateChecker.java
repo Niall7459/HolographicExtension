@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 
 public class UpdateChecker {
-
     private static final String API_URL = "https://api.spigotmc.org/legacy/update.php?resource=";
     private Plugin plugin;
     private int resourceID;

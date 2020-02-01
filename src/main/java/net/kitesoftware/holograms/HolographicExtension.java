@@ -15,7 +15,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HolographicExtension extends JavaPlugin {
-
     private AnimationRegistry animationRegistry;
     private ProtocolHook protocolHook;
     private ConfigFile config;
@@ -30,7 +29,6 @@ public class HolographicExtension extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fStarting HolographicExtension v" + version);
 
         CommandHandler commandHandler = new CommandHandler(this);
-
         if (!Bukkit.getPluginManager().isPluginEnabled("HolographicDisplays")) {
             getLogger().warning("You need HolographicDisplays installed to use HolographicExtension.");
             getLogger().warning("Please install and try again. Disabling...");

@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2016-2019 Niall Lindsay
- *
- */
+
 
 package net.kitesoftware.holograms.placeholder;
 
@@ -12,9 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RefreshPlaceholders {
-
     public void register(Plugin plugin) {
-
         List<String> changingTextImitation = Arrays.asList("§o §r", "§r §r");
 
         HologramsAPI.registerPlaceholder(plugin, "{fastest}", 0.1, new HextPlaceholderReplacer(

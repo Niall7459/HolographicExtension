@@ -35,78 +35,33 @@ public class Glow implements ConfigurableAnimation {
 
     @Override
     public List<String> create(String text, Map<String, String> options) {
-        ArrayList<String> frames = new ArrayList<>();
+        List<String> frames = new ArrayList<>();
 
-        String normalFormat = options.get("normal");
-        String startFormat =  options.get("start");
-        String middleFormat = options.get("middle");
-        String endFormat =    options.get("end");
+        String normalColor = options.get("normal");
+        String startColor = options.get("start");
+        String middleColor = options.get("middle");
+        String endColor = options.get("end");
 
-        int size = Integer.parseInt(options.get("size"));
-        int pause = Integer.parseInt(options.get("pause"));
+        int glowSize = Integer.parseInt(options.get("size"));
+        int pauseFrames = Integer.parseInt(options.get("pause"));
 
-        int length = text.length();
-        int iterations = length + size + 2 + 1;
+        for (int i = 0; i < text.length() + glowSize; i++) {
+            int startGi = Math.max(i - glowSize, 0);
+            int midGi = Math.max(startGi + (startGi > 0 ? 1 : 0), 0) + (i - glowSize == 0 ? 1 : 0);
 
-        if (size > length) {
-            size = length;
+            StringBuilder frame = new StringBuilder();
+
+            frame.append(normalColor).append(text, 0, startGi);
+            frame.append(startColor).append(text, Math.min(Math.max(startGi, 0), startGi), Math.min(midGi, text.length()));
+            frame.append(middleColor).append(text, midGi, Math.min(Math.max(i - 1, 0), text.length()));
+            frame.append(endColor).append(text, Math.max(Math.min(i - 1, text.length()), 0), Math.min(i, text.length()));
+            frame.append(normalColor).append(text.substring(Math.min(i, text.length())));
+
+            frames.add(frame.toString());
         }
 
-        int startsub = 0;
-        int endsub = 0;
-
-        int counter = 0;
-
-        for (int pos = 0; pos < iterations; ++pos) {
-            if (pos > 1 && pos < iterations - 2) {
-                if (counter >= length - size) {
-                    startsub -= 1;
-                    endsub += 1;
-                } else {
-                    if (startsub + 1 > size) {
-                        startsub = size;
-                        counter += 1;
-                    } else {
-                        startsub += 1;
-                    }
-                }
-
-            }
-
-            String startPart = "", middlePart = "", endPart = "", before = "", last = "";
-
-            if (pos >= iterations - length - 1 && pos < iterations - 1) {
-                startPart = text.substring(pos - (iterations - length - 1), pos - (iterations - length) + 2);
-            }
-
-            if (pos > 1 && pos < iterations - 2) {
-                middlePart = text.substring(pos - 1 - startsub - endsub, pos - 1 - endsub);
-            }
-
-            if(pos > 0 && pos <= length) {
-                endPart = text.substring(pos - 1, pos);
-            }
-
-            if(pos < length) {
-                last = text.substring(pos);
-            }
-
-            if(pos >= iterations - length) {
-                before = text.substring(0, pos + 1 - (iterations - length));
-            }
-
-            before = normalFormat + before;
-            startPart = startFormat + startPart;
-            middlePart = middleFormat + middlePart;
-            endPart = endFormat + endPart;
-            last = normalFormat + last;
-
-            String frame = before + startPart + middlePart + endPart + last;
-            frames.add(frame);
-        }
-
-        for (int i = 0; i < pause; i++) {
-            frames.add(normalFormat + text);
+        for (int i = 0; i < pauseFrames; i++) {
+            frames.add(normalColor + text);
         }
 
         return frames;
