@@ -3,6 +3,7 @@ description: Add fun animations and thousands of placeholders into holograms!
 version: 1.10.9
 author: Niall7459
 main: net.kitesoftware.holograms.HolographicExtension
+api-version: "1.13"
 
 depend: [HolographicDisplays]
 softdepend: [ProtocolLib, PlaceholderAPI]
