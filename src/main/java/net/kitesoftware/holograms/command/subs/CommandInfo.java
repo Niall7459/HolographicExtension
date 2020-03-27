@@ -6,8 +6,8 @@
 package net.kitesoftware.holograms.command.subs;
 
 import net.kitesoftware.holograms.UserAnimationManager;
-import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.config.ConfigAnimation;
 import net.kitesoftware.holograms.exception.AnimationNotFoundException;
 import org.bukkit.command.CommandSender;
@@ -19,9 +19,9 @@ public class CommandInfo extends SubCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args)  {
+    public boolean execute(CommandSender sender, String label, String[] args) {
         UserAnimationManager man = getCommandHandler().getPlugin().getUserAnimationManager();
-        if(args.length == 0) {
+        if (args.length == 0) {
             sender.sendMessage("§eThere are §f" + man.getRegisteredAnimations().size() + "§e Animations loaded.");
             sender.sendMessage("§7Use §f/" + label + " info §e[animation] §7For more information.");
         } else {
@@ -34,7 +34,7 @@ public class CommandInfo extends SubCommand {
 
                 if (args.length > 1 && Boolean.parseBoolean(args[1])) {
                     sender.sendMessage("Frames: ");
-                    for(String frame : anim.getFrames()) {
+                    for (String frame : anim.getFrames()) {
                         sender.sendMessage(frame);
                     }
                 }

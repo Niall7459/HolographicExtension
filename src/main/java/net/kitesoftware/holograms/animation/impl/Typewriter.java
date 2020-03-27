@@ -60,7 +60,7 @@ public class Typewriter implements ConfigurableAnimation {
 
         if (reverse) {
             for (int i = text.length(); i > 0; i--) {
-                current.deleteCharAt(i-1);
+                current.deleteCharAt(i - 1);
                 counter = counterCheck(frames, cursor, current, counter);
             }
         }
@@ -71,7 +71,7 @@ public class Typewriter implements ConfigurableAnimation {
     private int counterCheck(List<String> frames, String cursor, StringBuilder current, int counter) {
         if (counter < 2) {
             frames.add(current + "");
-        }else{
+        } else {
             frames.add(current + cursor);
         }
 

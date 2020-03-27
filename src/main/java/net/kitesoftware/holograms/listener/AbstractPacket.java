@@ -4,14 +4,13 @@
  */
 package net.kitesoftware.holograms.listener;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.bukkit.entity.Player;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.google.common.base.Objects;
+import org.bukkit.entity.Player;
+
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class AbstractPacket {
     // The packet we will be modifying
@@ -19,8 +18,9 @@ public abstract class AbstractPacket {
 
     /**
      * Constructs a new strongly typed wrapper for the given packet.
+     *
      * @param handle - handle to the raw packet data.
-     * @param type - the packet type.
+     * @param type   - the packet type.
      */
     protected AbstractPacket(PacketContainer handle, PacketType type) {
         // Make sure we're given a valid packet
@@ -35,6 +35,7 @@ public abstract class AbstractPacket {
 
     /**
      * Retrieve a handle to the raw packet data.
+     *
      * @return Raw packet data.
      */
     public PacketContainer getHandle() {
@@ -43,6 +44,7 @@ public abstract class AbstractPacket {
 
     /**
      * Send the current packet to the given receiver.
+     *
      * @param receiver - the receiver.
      * @throws RuntimeException If the packet cannot be sent.
      */
@@ -56,6 +58,7 @@ public abstract class AbstractPacket {
 
     /**
      * Simulate receiving the current packet from the given sender.
+     *
      * @param sender - the sender.
      * @throws RuntimeException If the packet cannot be received.
      */

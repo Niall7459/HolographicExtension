@@ -17,7 +17,7 @@ public class Utils {
     public static Map<String, String> mergeMap(Map<String, String> defaults, Map<String, String> overrides) {
         Map<String, String> mergedMap = new HashMap<>(defaults);
         for (String key : defaults.keySet())
-            if(overrides.containsKey(key)) mergedMap.put(key, overrides.get(key));
+            if (overrides.containsKey(key)) mergedMap.put(key, overrides.get(key));
 
         return mergedMap;
     }
@@ -33,11 +33,11 @@ public class Utils {
     public static Map<String, String> decodeOptions(String text) {
         Map<String, String> options = new HashMap<>();
 
-        if(!text.contains(" "))  {
+        if (!text.contains(" ")) {
             return parseParametersToMap(text, options);
         }
 
-        for(String parameter : text.split(" ")) {
+        for (String parameter : text.split(" ")) {
             parseParametersToMap(parameter, options);
         }
 
@@ -71,7 +71,7 @@ public class Utils {
     public static String alignText(String text, int width, boolean right) {
         StringBuilder space = new StringBuilder();
 
-        for(int i = 0; i < (width - text.length()); i++) {
+        for (int i = 0; i < (width - text.length()); i++) {
             space.append(" ");
         }
 

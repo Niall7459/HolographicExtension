@@ -24,7 +24,7 @@ public class HextPlaceholderReplacer implements PlaceholderReplacer {
 
         if (currentIndex == frames.size() - 1) {
             currentIndex = 0;
-        }else{
+        } else {
             currentIndex++;
         }
 

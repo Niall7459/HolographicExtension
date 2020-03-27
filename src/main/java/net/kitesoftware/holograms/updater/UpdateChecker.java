@@ -35,7 +35,7 @@ public class UpdateChecker {
                 InputStreamReader reader = new InputStreamReader(connection.getInputStream());
                 responseCode = connection.getResponseCode();
 
-                if(responseCode != 200) return UpdateStatus.UNAVAILABLE;
+                if (responseCode != 200) return UpdateStatus.UNAVAILABLE;
 
                 BufferedReader bufferedReader = new BufferedReader(reader);
                 String latestVersion = bufferedReader.readLine();
@@ -43,7 +43,7 @@ public class UpdateChecker {
 
                 reader.close();
 
-                if(latestVersion.equals(currentVersion)) {
+                if (latestVersion.equals(currentVersion)) {
                     return UpdateStatus.UP_TO_DATE;
                 } else {
                     return UpdateStatus.DIFFERENT_VERSION;
@@ -56,5 +56,5 @@ public class UpdateChecker {
         });
     }
 
-    public enum UpdateStatus { UP_TO_DATE, DIFFERENT_VERSION, UNAVAILABLE }
+    public enum UpdateStatus {UP_TO_DATE, DIFFERENT_VERSION, UNAVAILABLE}
 }

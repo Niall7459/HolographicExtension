@@ -15,12 +15,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HolographicExtension extends JavaPlugin {
+    private static String version;
     private AnimationRegistry animationRegistry;
     private ProtocolHook protocolHook;
     private ConfigFile config;
     private UserAnimationManager userAnimationManager;
-
-    private static String version;
 
     @Override
     public void onEnable() {
@@ -54,7 +53,7 @@ public class HolographicExtension extends JavaPlugin {
         updateChecker.checkUpdates().whenComplete((status, error) -> {
             if (status.equals(UpdateChecker.UpdateStatus.DIFFERENT_VERSION)) {
                 Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fA new update is available for download at https://www.spigotmc.org/resources/holographicextension.18461/");
-            } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)){
+            } else if (status.equals(UpdateChecker.UpdateStatus.UNAVAILABLE)) {
                 Bukkit.getConsoleSender().sendMessage("§e[HolographicExtension] §fUpdate checking is unavailable at this time.");
             }
         });
