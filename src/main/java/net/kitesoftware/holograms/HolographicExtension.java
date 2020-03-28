@@ -8,7 +8,6 @@ package net.kitesoftware.holograms;
 import net.kitesoftware.holograms.animation.AnimationRegistry;
 import net.kitesoftware.holograms.command.CommandHandler;
 import net.kitesoftware.holograms.config.ConfigFile;
-import net.kitesoftware.holograms.metrics.Metrics;
 import net.kitesoftware.holograms.placeholder.RefreshPlaceholders;
 import net.kitesoftware.holograms.updater.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -45,7 +44,6 @@ public class HolographicExtension extends JavaPlugin {
         config.reload();
 
         hookProtocolLib();
-        new Metrics(this);
 
         if (!getConfig().getBoolean("enable-update-check")) return;
 
