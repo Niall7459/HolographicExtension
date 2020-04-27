@@ -1,8 +1,20 @@
 /*
- * Copyright (c) 2016-2019 Niall Lindsay
+ *  Holographic Extension
+ *  Copyright (C) 2015 - 2019 Niall7459
  *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.kitesoftware.holograms.command;
 
 import net.kitesoftware.holograms.HolographicExtension;
@@ -15,16 +27,15 @@ import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class CommandHandler implements CommandExecutor, TabCompleter {
-
-    private HolographicExtension plugin;
-    private List<SubCommand> commandList;
+    private final HolographicExtension plugin;
+    private final List<SubCommand> commandList = new ArrayList<>();
 
     public CommandHandler(HolographicExtension plugin) {
         this.plugin = plugin;
-        commandList = new ArrayList<>();
 
         registerCommand(new CommandHelp(this));
         registerCommand(new CommandList(this));
@@ -33,7 +44,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         registerCommand(new CommandReload(this));
     }
 
-    public List<SubCommand> getCommands() {
+    public Collection<SubCommand> getCommands() {
         return commandList;
     }
 
@@ -74,7 +85,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
             if (args.length > 1) {
                 if (args[0].equalsIgnoreCase("info") && subCommand.getName().equalsIgnoreCase("info")) {
                     if (args.length == 2) {
-                        for (ConfigAnimation animation : plugin.getUserAnimationManager().getRegisteredAnimations()) {
+                        for (ConfigAnimation animation : plugin.getPlaceholderRegistry().getRegisteredPlaceholders()) {
                             if (animation.getName().startsWith(args[1])) {
                                 completions.add(animation.getName());
                             }

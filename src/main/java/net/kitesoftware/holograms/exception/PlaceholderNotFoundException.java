@@ -15,30 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package net.kitesoftware.holograms.config;
+package net.kitesoftware.holograms.exception;
 
-import java.util.List;
-
-public class ConfigAnimation {
-    private final String name;
-    private final double refresh;
-    private final List<String> frames;
-
-    ConfigAnimation(String name, double refresh, List<String> frames) {
-        this.name = name;
-        this.refresh = refresh;
-        this.frames = frames;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getRefreshRate() {
-        return refresh;
-    }
-
-    public List<String> getFrames() {
-        return frames;
-    }
+public class PlaceholderNotFoundException extends Exception {
 }

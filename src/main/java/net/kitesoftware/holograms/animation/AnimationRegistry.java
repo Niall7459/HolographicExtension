@@ -1,30 +1,31 @@
 /*
- * Copyright (c) 2016-2019 Niall Lindsay
+ *  Holographic Extension
+ *  Copyright (C) 2015 - 2019 Niall7459
  *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.kitesoftware.holograms.animation;
 
-import net.kitesoftware.holograms.animation.iface.Animation;
-import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
-import net.kitesoftware.holograms.util.Utils;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AnimationRegistry {
-
-    private static final Pattern ANIMATION_PATTERN = Pattern.compile("(.*)<([^ ]*)(.*?)>(.*?)</(.*?)>(.*)");
-    private List<Animation> registeredAnimations;
+    private final List<Animation> registeredAnimations;
 
     public AnimationRegistry() {
         registeredAnimations = new ArrayList<>();
         registerDefaultAnimations();
-
     }
 
     private void registerDefaultAnimations() {
@@ -34,50 +35,15 @@ public class AnimationRegistry {
     }
 
     /**
-     * Register an custom animation.
+     * Register a custom animation.
      *
-     * @param animation
+     * @param animation Animation
      */
     public void registerAnimation(Animation animation) {
         registeredAnimations.add(animation);
     }
 
-    public List<String> setAnimations(String text) {
-        Matcher matcher = ANIMATION_PATTERN.matcher(text);
-
-        if (matcher.find()) {
-            String tagName = matcher.group(2);
-            Animation animation = fromName(tagName);
-
-            if (animation != null) {
-                List<String> animationFrames = new ArrayList<>();
-                String options = matcher.group(3).trim();
-                String value = matcher.group(4);
-
-                if (animation instanceof ConfigurableAnimation) {
-                    ConfigurableAnimation configurableAnimation = (ConfigurableAnimation) animation;
-                    Map<String, String> optionsMap = Utils.mergeMap(configurableAnimation.getOptions(), Utils.decodeOptions(options));
-                    animationFrames.addAll(configurableAnimation.create(value, optionsMap));
-                } else {
-                    animationFrames.addAll(animation.create(value));
-                }
-
-                if (animationFrames.size() > 0) {
-                    String before = matcher.group(1);
-                    String after = matcher.group(6);
-
-                    animationFrames = Utils.insertList(before, animationFrames, after);
-                }
-
-                return animationFrames;
-            }
-        }
-
-
-        return Collections.singletonList(text);
-    }
-
-    private Animation fromName(String name) {
+    public Animation getAnimation(String name) {
         for (Animation animation : registeredAnimations) {
             if (animation.getName().equalsIgnoreCase(name)) return animation;
         }

@@ -15,26 +15,31 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package net.kitesoftware.holograms.command.subs;
+package net.kitesoftware.holograms.placeholder;
 
-import net.kitesoftware.holograms.command.CommandHandler;
-import net.kitesoftware.holograms.command.SubCommand;
-import org.bukkit.command.CommandSender;
+import com.gmail.filoghost.holographicdisplays.api.placeholder.PlaceholderReplacer;
 
-public class CommandHelp extends SubCommand {
+import java.util.List;
 
-    public CommandHelp(CommandHandler commandHandler) {
-        super("help", "Display all commands", "", 0, commandHandler);
+public class PlaceholderAnimationReplacer implements PlaceholderReplacer {
+
+    private final List<String> frames;
+    private int currentIndex = 0;
+
+    public PlaceholderAnimationReplacer(List<String> frames) {
+        this.frames = frames;
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args) {
+    public String update() {
+        String currentFrame = frames.get(currentIndex);
 
-        for (SubCommand command : getCommandHandler().getCommands()) {
-            sender.sendMessage("§e/" + label + " " + command.getName() + " " + command.getPossibleArgs());
-            sender.sendMessage("§7" + command.getDescription());
+        if (currentIndex == frames.size() - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
         }
 
-        return true;
+        return currentFrame;
     }
 }

@@ -1,12 +1,24 @@
 /*
- * Copyright (c) 2016-2019 Niall Lindsay
+ *  Holographic Extension
+ *  Copyright (C) 2015 - 2019 Niall7459
  *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.kitesoftware.holograms.config;
 
 import net.kitesoftware.holograms.HolographicExtension;
-import net.kitesoftware.holograms.util.Utils;
+import net.kitesoftware.holograms.animation.AnimationReplacer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,9 +27,8 @@ import java.io.File;
 import java.util.List;
 
 public class ConfigFile {
-
     private FileConfiguration config;
-    private HolographicExtension plugin;
+    private final HolographicExtension plugin;
 
     public ConfigFile(HolographicExtension plugin) {
         this.plugin = plugin;
@@ -40,11 +51,10 @@ public class ConfigFile {
 
             List<String> frames = section.getStringList("frames");
             double speed = section.getDouble("speed");
-
-            frames = Utils.setAnimations(frames, plugin.getAnimationRegistry());
+            frames = AnimationReplacer.setAnimations(frames);
 
             ConfigAnimation animation = new ConfigAnimation(animationName, speed, frames);
-            plugin.getUserAnimationManager().registerAnimation(animation);
+            plugin.getPlaceholderRegistry().registerPlaceholder(animation);
         }
     }
 }

@@ -15,30 +15,23 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package net.kitesoftware.holograms.config;
+package net.kitesoftware.holograms.animation;
 
 import java.util.List;
 
-public class ConfigAnimation {
-    private final String name;
-    private final double refresh;
-    private final List<String> frames;
+public interface Animation {
+    /**
+     * Get the name of this animation.
+     *
+     * @return String name
+     */
+    String getName();
 
-    ConfigAnimation(String name, double refresh, List<String> frames) {
-        this.name = name;
-        this.refresh = refresh;
-        this.frames = frames;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getRefreshRate() {
-        return refresh;
-    }
-
-    public List<String> getFrames() {
-        return frames;
-    }
+    /**
+     * Create animation
+     *
+     * @param text Text to create animation from.
+     * @return Created animation frames.
+     */
+    List<String> create(String text);
 }

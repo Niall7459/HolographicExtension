@@ -1,20 +1,30 @@
 /*
- * Copyright (c) 2016-2019 Niall Lindsay
+ *  Holographic Extension
+ *  Copyright (C) 2015 - 2019 Niall7459
  *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 package net.kitesoftware.holograms.animation.impl;
 
-import net.kitesoftware.holograms.animation.iface.ConfigurableAnimation;
-import net.kitesoftware.holograms.util.Utils;
+import net.kitesoftware.holograms.animation.ConfigurableAnimation;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public enum Align implements ConfigurableAnimation {
-
-    LEFT {
+public class Align {
+    public static final ConfigurableAnimation LEFT = new ConfigurableAnimation() {
         @Override
         public String getName() {
             return "left";
@@ -27,14 +37,12 @@ public enum Align implements ConfigurableAnimation {
 
         @Override
         public List<String> create(String text, Map<String, String> options) {
-            return Collections.singletonList(Utils.alignText(
-                    text,
-                    Integer.parseInt(options.get("width")),
-                    false));
+            return Collections.singletonList(alignText(
+                    text, Integer.parseInt(options.get("width")), false));
         }
-    },
+    };
 
-    RIGHT {
+    public static final ConfigurableAnimation RIGHT = new ConfigurableAnimation() {
         @Override
         public String getName() {
             return "right";
@@ -47,10 +55,18 @@ public enum Align implements ConfigurableAnimation {
 
         @Override
         public List<String> create(String text, Map<String, String> options) {
-            return Collections.singletonList(Utils.alignText(
-                    text,
-                    Integer.parseInt(options.get("width")),
-                    true));
+            return Collections.singletonList(alignText(
+                    text, Integer.parseInt(options.get("width")), true));
+            }
+    };
+
+    private static String alignText(String text, int width, boolean right) {
+        StringBuilder space = new StringBuilder();
+
+        for (int i = 0; i < (width - text.length()); i++) {
+            space.append(" ");
         }
+
+        return right ? (space + text) : (text + space);
     }
 }
