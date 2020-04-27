@@ -61,7 +61,8 @@ public class HolographicExtension extends JavaPlugin {
         hookProtocolLib();
         new MetricsLite(this, 18461);
 
-        if (getConfig().getBoolean("enable-update-check")) return;
+        if (!getConfig().getBoolean("enable-update-check")) return;
+
         UpdateChecker updateChecker = new UpdateChecker(this, 18461);
         updateChecker.checkUpdates().whenComplete((status, error) -> {
             if (status == UpdateChecker.UpdateStatus.DIFFERENT_VERSION) {
