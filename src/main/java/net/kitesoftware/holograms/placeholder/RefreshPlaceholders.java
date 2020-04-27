@@ -1,5 +1,3 @@
-
-
 package net.kitesoftware.holograms.placeholder;
 
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;

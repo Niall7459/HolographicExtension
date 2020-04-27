@@ -15,12 +15,12 @@ import java.util.Map;
 public class Glow implements ConfigurableAnimation {
 
     private static final HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
-            put("normal", "§e");
-            put("start", "§d");
-            put("middle", "§5");
-            put("end", "§d");
-            put("size", "3");
-            put("pause", "10");
+        put("normal", "§e");
+        put("start", "§d");
+        put("middle", "§5");
+        put("end", "§d");
+        put("size", "3");
+        put("pause", "10");
     }};
 
     @Override
@@ -49,15 +49,12 @@ public class Glow implements ConfigurableAnimation {
             int startGi = Math.max(i - glowSize, 0);
             int midGi = Math.max(startGi + (startGi > 0 ? 1 : 0), 0) + (i - glowSize == 0 ? 1 : 0);
 
-            StringBuilder frame = new StringBuilder();
-
-            frame.append(normalColor).append(text, 0, startGi);
-            frame.append(startColor).append(text, Math.min(Math.max(startGi, 0), startGi), Math.min(midGi, text.length()));
-            frame.append(middleColor).append(text, midGi, Math.min(Math.max(i - 1, 0), text.length()));
-            frame.append(endColor).append(text, Math.max(Math.min(i - 1, text.length()), 0), Math.min(i, text.length()));
-            frame.append(normalColor).append(text.substring(Math.min(i, text.length())));
-
-            frames.add(frame.toString());
+            String frame = normalColor + text.substring(0, startGi) +
+                    startColor + text.substring(Math.min(Math.max(startGi, 0), startGi), Math.min(midGi, text.length())) +
+                    middleColor + text.substring(midGi, Math.min(Math.max(i - 1, 0), text.length())) +
+                    endColor + text.substring(Math.max(Math.min(i - 1, text.length()), 0), Math.min(i, text.length())) +
+                    normalColor + text.substring(Math.min(i, text.length()));
+            frames.add(frame);
         }
 
         for (int i = 0; i < pauseFrames; i++) {

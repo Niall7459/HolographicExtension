@@ -5,4 +5,5 @@
 
 package net.kitesoftware.holograms.exception;
 
-public class AnimationNotFoundException extends Exception {}
+public class AnimationNotFoundException extends Exception {
+}

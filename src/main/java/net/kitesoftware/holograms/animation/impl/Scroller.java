@@ -43,7 +43,7 @@ public class Scroller implements ConfigurableAnimation {
         if (text.length() < width) {
             StringBuilder spaceBuilder = new StringBuilder();
 
-            while(spaceBuilder.length() < width) {
+            while (spaceBuilder.length() < width) {
                 spaceBuilder.append(" ");
             }
 
@@ -58,8 +58,8 @@ public class Scroller implements ConfigurableAnimation {
 
         StringBuilder spacing = new StringBuilder();
         for (int i = 0; i < space; ++i) {
-            temp.add(text.substring(text.length() - width + (i > width ? width : i)) + spacing);
-            if(spacing.length() < width) {
+            temp.add(text.substring(text.length() - width + (Math.min(i, width))) + spacing);
+            if (spacing.length() < width) {
                 spacing.append(" ");
             }
         }
@@ -70,18 +70,18 @@ public class Scroller implements ConfigurableAnimation {
         for (int i = 0; i < space; i++) {
             if (i > spacing.length()) break;
 
-            temp.add(spacing.substring(0, spacing.length() - i) + text.substring(0, width - (space > width ? width : space) + i));
+            temp.add(spacing.substring(0, spacing.length() - i) + text.substring(0, width - (Math.min(space, width)) + i));
         }
 
         ChatColor stored = ChatColor.RESET;
         for (int i = 0; i < temp.size(); i++) {
-            StringBuilder builder =  new StringBuilder(temp.get(pos++ % temp.size()));
+            StringBuilder builder = new StringBuilder(temp.get(pos++ % temp.size()));
 
-            if(builder.charAt(builder.length() - 1) == '§') {
+            if (builder.charAt(builder.length() - 1) == '§') {
                 builder.setCharAt(builder.length() - 1, ' ');
             }
 
-            if(builder.charAt(0) == '§') {
+            if (builder.charAt(0) == '§') {
                 ChatColor color = ChatColor.getByChar(builder.charAt(1));
                 if (color != null) {
                     stored = color;

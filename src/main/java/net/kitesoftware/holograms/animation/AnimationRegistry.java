@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
 
 public class AnimationRegistry {
 
-    private List<Animation> registeredAnimations;
     private static final Pattern ANIMATION_PATTERN = Pattern.compile("(.*)<([^ ]*)(.*?)>(.*?)</(.*?)>(.*)");
+    private List<Animation> registeredAnimations;
 
     public AnimationRegistry() {
         registeredAnimations = new ArrayList<>();
@@ -35,6 +35,7 @@ public class AnimationRegistry {
 
     /**
      * Register an custom animation.
+     *
      * @param animation
      */
     public void registerAnimation(Animation animation) {

@@ -53,10 +53,10 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 if (subCommand.getMinimumArgs() <= args.length - 1) {
                     if (commandSender.hasPermission("holographic-extension." + subCommand.getName())) {
                         return subCommand.execute(commandSender, label, Arrays.copyOfRange(args, 1, args.length));
-                    } else{
+                    } else {
                         commandSender.sendMessage("§cYou do not have the 'holographic-extension." + subCommand.getName() + "' permission to use this command.");
                     }
-                }else{
+                } else {
                     commandSender.sendMessage("§eThe §6" + subCommand.getName() + " command requires at least " + subCommand.getMinimumArgs() + " arguments.");
                     commandSender.sendMessage("Usage: /" + label + " " + subCommand.getName() + " " + subCommand.getPossibleArgs());
                 }

@@ -21,10 +21,10 @@ public class Rainbow implements Animation {
     public List<String> create(String text) {
         List<String> frames = new ArrayList<>();
 
-        for(int i = 0; i < 9; ++i)
+        for (int i = 0; i < 9; ++i)
             frames.add("§" + i + text);
 
-        for(int i = 97; i < 102; ++i)
+        for (int i = 97; i < 102; ++i)
             frames.add("§" + (char) i + text);
 
         return frames;

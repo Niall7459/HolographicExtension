@@ -29,7 +29,7 @@ public enum Align implements ConfigurableAnimation {
         public List<String> create(String text, Map<String, String> options) {
             return Collections.singletonList(Utils.alignText(
                     text,
-                    Integer.valueOf(options.get("width")),
+                    Integer.parseInt(options.get("width")),
                     false));
         }
     },
@@ -49,7 +49,7 @@ public enum Align implements ConfigurableAnimation {
         public List<String> create(String text, Map<String, String> options) {
             return Collections.singletonList(Utils.alignText(
                     text,
-                    Integer.valueOf(options.get("width")),
+                    Integer.parseInt(options.get("width")),
                     true));
         }
     }

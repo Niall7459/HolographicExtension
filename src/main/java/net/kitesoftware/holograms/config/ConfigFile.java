@@ -39,7 +39,7 @@ public class ConfigFile {
             ConfigurationSection section = config.getConfigurationSection(animationName);
 
             List<String> frames = section.getStringList("frames");
-            Double speed = section.getDouble("speed");
+            double speed = section.getDouble("speed");
 
             frames = Utils.setAnimations(frames, plugin.getAnimationRegistry());
 

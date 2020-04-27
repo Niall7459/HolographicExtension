@@ -7,8 +7,8 @@ package net.kitesoftware.holograms.command.subs;
 
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import net.kitesoftware.holograms.HolographicExtension;
-import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.placeholder.RefreshPlaceholders;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

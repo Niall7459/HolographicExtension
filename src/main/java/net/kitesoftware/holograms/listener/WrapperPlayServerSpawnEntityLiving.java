@@ -5,16 +5,15 @@
 
 package net.kitesoftware.holograms.listener;
 
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.injector.PacketConstructor;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 
 public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
 
@@ -44,6 +43,7 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
 
     /**
      * Retrieve entity ID.
+     *
      * @return The current EID
      */
     public int getEntityID() {
@@ -51,7 +51,17 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
     }
 
     /**
+     * Set entity ID.
+     *
+     * @param value - new value.
+     */
+    public void setEntityID(int value) {
+        handle.getIntegers().write(0, value);
+    }
+
+    /**
      * Retrieve the entity that will be spawned.
+     *
      * @param world - the current world of the entity.
      * @return The spawned entity.
      */
@@ -61,6 +71,7 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
 
     /**
      * Retrieve the entity that will be spawned.
+     *
      * @param event - the packet event.
      * @return The spawned entity.
      */
@@ -69,15 +80,8 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
     }
 
     /**
-     * Set entity ID.
-     * @param value - new value.
-     */
-    public void setEntityID(int value) {
-        handle.getIntegers().write(0, value);
-    }
-
-    /**
      * Retrieve the type of mob.
+     *
      * @return The current Type
      */
     @SuppressWarnings("deprecation")
@@ -87,6 +91,7 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
 
     /**
      * Set the type of mob.
+     *
      * @param value - new value.
      */
     @SuppressWarnings("deprecation")
@@ -98,6 +103,7 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
      * Retrieve the data watcher.
      * <p>
      * Content varies by mob, see Entities.
+     *
      * @return The current Metadata
      */
     public WrappedDataWatcher getMetadata() {
@@ -106,6 +112,7 @@ public class WrapperPlayServerSpawnEntityLiving extends AbstractPacket {
 
     /**
      * Set the data watcher.
+     *
      * @param value - new value.
      */
     public void setMetadata(WrappedDataWatcher value) {

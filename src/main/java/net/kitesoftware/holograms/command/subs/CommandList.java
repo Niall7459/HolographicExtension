@@ -5,8 +5,8 @@
 
 package net.kitesoftware.holograms.command.subs;
 
-import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.command.CommandHandler;
+import net.kitesoftware.holograms.command.SubCommand;
 import net.kitesoftware.holograms.config.ConfigAnimation;
 import org.bukkit.command.CommandSender;
 
