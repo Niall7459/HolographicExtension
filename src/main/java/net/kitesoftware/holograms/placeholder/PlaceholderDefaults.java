@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlaceholderDefaults {
-    private static final List<String> changingTextImitation = Arrays.asList("§o§r", "§r§r");
+    private static final List<String> changingTextImitation = Arrays.asList("§o §r", "§r §r");
 
     public static void registerRefreshPlaceholders(Plugin plugin) {
         HologramsAPI.registerPlaceholder(plugin, "{fastest}", 0.1,
