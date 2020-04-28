@@ -28,8 +28,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class UpdateChecker {
     private static final String API_URL = "https://api.spigotmc.org/legacy/update.php?resource=";
-    private Plugin plugin;
-    private int resourceID;
+    private final Plugin plugin;
+    private final int resourceID;
 
     public UpdateChecker(Plugin plugin, int resourceID) {
         this.plugin = plugin;
@@ -55,7 +55,7 @@ public class UpdateChecker {
 
                 reader.close();
 
-                if (latestVersion.equals(currentVersion)) {
+                if (currentVersion.compareTo(latestVersion) >= 0) {
                     return UpdateStatus.UP_TO_DATE;
                 } else {
                     return UpdateStatus.DIFFERENT_VERSION;
