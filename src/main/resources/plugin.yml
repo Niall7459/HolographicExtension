@@ -1,6 +1,6 @@
 name: HolographicExtension
 description: Add fun animations and thousands of placeholders into holograms!
-version: 1.10.9
+version: 1.10.10
 author: Niall7459
 main: net.kitesoftware.holograms.HolographicExtension
 api-version: "1.13"
