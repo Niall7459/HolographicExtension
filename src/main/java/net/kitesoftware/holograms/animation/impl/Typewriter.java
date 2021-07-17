@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class Typewriter implements ConfigurableAnimation {
 
-    private HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
+    private final HashMap<String, String> DEFAULTS = new HashMap<String, String>() {{
         put("cursor", "_");
         put("pause", "10");
         put("reverse", "true");

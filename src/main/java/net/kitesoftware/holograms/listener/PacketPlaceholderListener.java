@@ -55,7 +55,7 @@ public class PacketPlaceholderListener extends PacketAdapter {
         WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet);
         Entity e = entityMetadataPacket.getEntity(event);
 
-        if(e == null) return;
+        if (e == null) return;
         if (e.getType() != EntityType.ARMOR_STAND) return;
 
         List<WrappedWatchableObject> dataWatcherValues = entityMetadataPacket.getEntityMetadata();
