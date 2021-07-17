@@ -82,7 +82,7 @@ You have to use the following special placeholders, in order to update it:
 - `{medium}` - Refresh every second.
 - `{slow}` - Refresh every 5 seconds.
 - `{slower}` - Refresh every 10 seconds.
-- '{slowest}' - Refresh every 45 seconds (best for performance).
+- `{slowest}` - Refresh every 45 seconds (best for performance).
 
 **Example**: `/hd add example {medium}%player_time%`
 
