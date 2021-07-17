@@ -26,6 +26,7 @@ import com.comphenix.protocol.wrappers.WrappedWatchableObject;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kitesoftware.holograms.listener.wrapper.WrapperPlayServerEntityMetadata;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -53,12 +54,10 @@ public class PacketPlaceholderListener extends PacketAdapter {
         PacketContainer packet = event.getPacket();
 
         if (packet.getType() == PacketType.Play.Server.ENTITY_METADATA) {
-            WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet.deepClone());
+            WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet);
             List<WrappedWatchableObject> dataWatcherValues = entityMetadataPacket.getEntityMetadata();
 
-            if (dataWatcherValues == null) {
-                return;
-            }
+            if (dataWatcherValues == null) return;
 
             for (WrappedWatchableObject watchableObject : dataWatcherValues) {
                 if (watchableObject.getIndex() == 2) {
