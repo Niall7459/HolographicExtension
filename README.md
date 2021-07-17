@@ -77,11 +77,12 @@ You have to use the following special placeholders, in order to update it:
 **Example**: `/hd add example {r1}%player_time%`
 
 ### Version 1.10.0 and above
-- `{fastest}` - Refresh every 0.1 seconds.
+- `{fastest}` - Refresh every 0.1 seconds (recommended to use minimally).
 - `{fast}` - Refresh every 0.5 seconds.
 - `{medium}` - Refresh every second.
 - `{slow}` - Refresh every 5 seconds.
-- `{slowest}` - Refresh every 10 seconds.
+- `{slower}` - Refresh every 10 seconds.
+- `{slowest}` - Refresh every 45 seconds (best for performance).
 
 **Example**: `/hd add example {medium}%player_time%`
 
