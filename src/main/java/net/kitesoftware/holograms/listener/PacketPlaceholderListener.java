@@ -40,37 +40,32 @@ public class PacketPlaceholderListener extends PacketAdapter {
 
         String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
         String majorVersion = version.split("_")[1];
-        if (majorVersion.contains("_")) {
-            majorVersion = majorVersion.split("_")[0];
-        }
+        if (majorVersion.contains("_")) majorVersion = majorVersion.split("_")[0];
 
-        if (Integer.parseInt(majorVersion) < 13) {
-            useOptional = false;
-        }
+        if (Integer.parseInt(majorVersion) < 13) useOptional = false;
     }
 
     @Override
     public void onPacketSending(PacketEvent event) {
         PacketContainer packet = event.getPacket();
 
-        if (packet.getType() == PacketType.Play.Server.ENTITY_METADATA) {
-            WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet);
+        if (packet.getType() != PacketType.Play.Server.ENTITY_METADATA) return;
 
-            if(entityMetadataPacket.getEntity(event).getType() != EntityType.ARMOR_STAND) return;
+        WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet);
 
-            List<WrappedWatchableObject> dataWatcherValues = entityMetadataPacket.getEntityMetadata();
-            if (dataWatcherValues == null) return;
+        if (entityMetadataPacket.getEntity(event).getType() != EntityType.ARMOR_STAND) return;
 
-            for (WrappedWatchableObject watchableObject : dataWatcherValues) {
-                if (watchableObject.getIndex() == 2) {
-                    if (replacePlaceholders(watchableObject, event.getPlayer())) {
-                        event.setPacket(entityMetadataPacket.getHandle());
-                    }
+        List<WrappedWatchableObject> dataWatcherValues = entityMetadataPacket.getEntityMetadata();
+        if (dataWatcherValues == null) return;
 
-                    return;
-                }
+        for (WrappedWatchableObject watchableObject : dataWatcherValues) {
+            if (watchableObject.getIndex() == 2) {
+                if (replacePlaceholders(watchableObject, event.getPlayer())) event.setPacket(entityMetadataPacket.getHandle());
+
+                return;
             }
         }
+
     }
 
     private boolean replacePlaceholders(WrappedWatchableObject customNameWatchableObject, Player player) {
@@ -79,15 +74,11 @@ public class PacketPlaceholderListener extends PacketAdapter {
         Object customNameWatchableObjectValue = customNameWatchableObject.getValue();
         String customName;
 
-        if (useOptional) { //1.13 or above
-            if (!(customNameWatchableObjectValue instanceof Optional)) {
-                return false;
-            }
+        if (useOptional) { // 1.13 or above
+            if (!(customNameWatchableObjectValue instanceof Optional)) return false;
 
             Optional<?> customNameOptional = (Optional<?>) customNameWatchableObjectValue;
-            if (!customNameOptional.isPresent()) {
-                return false;
-            }
+            if (!customNameOptional.isPresent()) return false;
 
             WrappedChatComponent componentWrapper = WrappedChatComponent.fromHandle(customNameOptional.get());
             customName = componentWrapper.getJson();
