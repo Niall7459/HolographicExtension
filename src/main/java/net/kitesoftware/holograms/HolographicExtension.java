@@ -62,6 +62,8 @@ public class HolographicExtension extends JavaPlugin {
         new MetricsLite(this, 18461);
 
         if (!getConfig().getBoolean("enable-update-check")) return;
+        // Disable update checking on this build as it's not on Spigot, causing unnecessary 'outdated' messages
+        if(getDescription().getVersion().equals("1.10.10")) return;
 
         UpdateChecker updateChecker = new UpdateChecker(this, 18461);
         updateChecker.checkUpdates().whenComplete((status, error) -> {
