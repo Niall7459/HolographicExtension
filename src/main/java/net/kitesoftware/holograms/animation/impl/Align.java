@@ -57,7 +57,7 @@ public class Align {
         public List<String> create(String text, Map<String, String> options) {
             return Collections.singletonList(alignText(
                     text, Integer.parseInt(options.get("width")), true));
-            }
+        }
     };
 
     private static String alignText(String text, int width, boolean right) {

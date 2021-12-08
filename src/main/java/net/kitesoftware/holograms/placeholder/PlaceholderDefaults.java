@@ -39,7 +39,10 @@ public class PlaceholderDefaults {
         HologramsAPI.registerPlaceholder(plugin, "{slow}", 5,
                 new PlaceholderAnimationReplacer(changingTextImitation));
 
-        HologramsAPI.registerPlaceholder(plugin, "{slowest}", 10,
+        HologramsAPI.registerPlaceholder(plugin, "{slower}", 10,
+                new PlaceholderAnimationReplacer(changingTextImitation));
+
+        HologramsAPI.registerPlaceholder(plugin, "{slowest}", 45,
                 new PlaceholderAnimationReplacer(changingTextImitation));
     }
 }

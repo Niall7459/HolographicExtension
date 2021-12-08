@@ -65,7 +65,11 @@ public class WrapperPlayServerEntityMetadata extends AbstractPacket {
      * @return The entity.
      */
     public Entity getEntity(World world) {
-        return handle.getEntityModifier(world).read(0);
+        try {
+            return handle.getEntityModifier(world).read(0);
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     /**
