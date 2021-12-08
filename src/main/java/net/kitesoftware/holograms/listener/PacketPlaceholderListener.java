@@ -52,7 +52,7 @@ public class PacketPlaceholderListener extends PacketAdapter {
 
         if (packet.getType() != PacketType.Play.Server.ENTITY_METADATA) return;
 
-        WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet);
+        WrapperPlayServerEntityMetadata entityMetadataPacket = new WrapperPlayServerEntityMetadata(packet.deepClone());
         Entity e = entityMetadataPacket.getEntity(event);
 
         if (e == null) return;
